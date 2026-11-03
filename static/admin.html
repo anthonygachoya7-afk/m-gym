@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Staff dashboard · MUST Gym</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Sign in -->
+  <div id="loginView" class="login" hidden>
+    <h1>Staff sign in</h1>
+    <label for="pw">Password</label>
+    <input id="pw" type="password" autocomplete="current-password" placeholder="Enter password">
+    <p><button class="btn dark" id="loginBtn">Sign in</button></p>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="app" hidden>
+    <nav>
+      <b>MUST GYM</b>
+      <div>
+        <a href="index.html">Public site</a>
+        <button class="btn sm ghost" id="logout">Sign out</button>
+      </div>
+    </nav>
+
+    <div class="tabs" role="tablist">
+      <button class="on" data-t="checkin">Check-in</button>
+      <button data-t="members">Members</button>
+      <button data-t="progress">Progress</button>
+      <button data-t="settings">Settings</button>
+    </div>
+
+    <main>
+
+      <!-- Check-in -->
+      <div class="panel on" id="checkin">
+        <div class="two">
+          <div>
+            <h2 style="font-size:2.2rem;color:var(--forest);margin-bottom:1rem">Check a member in</h2>
+            <input id="q" placeholder="Search by name, code or phone" aria-label="Search members">
+            <div id="results" style="margin-top:1rem"></div>
+          </div>
+          <div>
+            <h2 style="font-size:2.2rem;color:var(--forest);margin-bottom:1rem">
+              In today <span class="pill" id="todayCount">0</span>
+            </h2>
+            <div id="today"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Members -->
+      <div class="panel" id="members">
+        <h2 style="font-size:2.2rem;color:var(--forest);margin-bottom:1rem">Add a member</h2>
+        <div class="row">
+          <div><label for="nName">Full name</label><input id="nName"></div>
+          <div><label for="nPhone">Phone</label><input id="nPhone"></div>
+          <div>
+            <label for="nPlan">Plan</label>
+            <select id="nPlan">
+              <option>Monthly</option>
+              <option>semester</option>
+              <option>Pay as you go</option>
+            </select>
+          </div>
+          <div><label for="nGoal">Goal</label><input id="nGoal" placeholder="e.g. Lose 5 kg"></div>
+        </div>
+        <p><button class="btn dark" id="addMember">Add member</button></p>
+        <div id="memberTable" style="margin-top:1.5rem"></div>
+      </div>
+
+      <!-- Progress -->
+      <div class="panel" id="progress">
+        <label for="pMember">Member</label>
+        <select id="pMember"></select>
+        <div class="two" style="margin-top:1rem">
+          <div class="card">
+            <h3>Log progress</h3>
+            <div class="row">
+              <div><label for="pW">Weight (kg)</label><input id="pW" type="number" step="0.1"></div>
+              <div><label for="pF">Body fat (%)</label><input id="pF" type="number" step="0.1"></div>
+            </div>
+            <label for="pN">Notes</label>
+            <textarea id="pN" rows="2"></textarea>
+            <p><button class="btn dark" id="addProg">Save entry</button></p>
+          </div>
+          <div class="card">
+            <h3>Weight over time</h3>
+            <div id="chart"></div>
+          </div>
+        </div>
+        <div id="progTable" style="margin-top:1.5rem"></div>
+      </div>
+
+      <!-- Settings -->
+      <div class="panel" id="settings">
+        <div class="card" style="max-width:420px">
+          <h3>Change password</h3>
+          <label for="sCur">Current password</label>
+          <input id="sCur" type="password" autocomplete="current-password">
+          <label for="sNew">New password</label>
+          <input id="sNew" type="password" autocomplete="new-password">
+          <label for="sNew2">Repeat new password</label>
+          <input id="sNew2" type="password" autocomplete="new-password">
+          <p><button class="btn dark" id="savePw">Change password</button></p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
