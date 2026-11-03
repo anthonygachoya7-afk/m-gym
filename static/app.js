@@ -135,11 +135,10 @@ function renderResults() {
                     <small>${esc(m.code)} · ${esc(m.plan)}</small>
                 </div>
 
-                ${
-                    m.in_today
-                        ? '<span class="pill in">Checked in</span>'
-                        : `<button class="btn sm" data-in="${m.id}">Check in</button>`
-                }
+                ${m.in_today
+                ? '<span class="pill in">Checked in</span>'
+                : `<button class="btn sm" data-in="${m.id}">Check in</button>`
+            }
             </div>
         `).join("")
         : '<div class="empty">No members match. Add them in the Members tab.</div>';
